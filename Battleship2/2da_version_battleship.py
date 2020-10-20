@@ -193,10 +193,15 @@ def turno_disparos_juego_pc():
 # Comenzamos a codificar el storytelling del juego
 #
 print('Bienvenido a BATTLESHIP 3.0, si estás listo para poner a prueba tus habilidades como gamer, atrevete a jugar.')
+print("\n"*2)
 print('COMENCEMOS!')
+print("\n"*2)
 print('1.Tendrás que elegir la posición de 3 barcos, capturando una letra y un número, esta posicion se verá reflejada en un tablero de 10x10, y así lo haras de forma consecutiva hasta tener la posición de tus 3 barcos en el tablero.')
+print("\n"*2)
 print('2.De forma automática, tu contrincante "SKYNET" elegirá la posicion de sus barcos.') 
+print("\n"*2)
 print('3.Comenzarás a capturar tus disparos para el hundiemiento de la flota de SKYNET')
+print("\n"*2)
 print('¡SUERTE NOVATO!')                                 
         
 inicio = input('Quieres comenzar? Para iniciar, escribe yes (y) para aceptar el reto o una (n) si decides retirarte:').upper()
