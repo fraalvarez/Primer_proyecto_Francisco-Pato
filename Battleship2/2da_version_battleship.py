@@ -140,13 +140,14 @@ def eleccion_pc():
 
 
 # Ahora comenzamos con los disparos del usuario, esto será hasta que los disparos coincidan con los barcos de pc
-
 disparos_usuario = 0
 disparos_pc = 0
 
 def turno_disparos_juego_usuario():
+    global disparos_usuario
     print("Adivina la posición de un barco")
     fila_numero, columna_numero = preguntar_posicion_barcos_usuario()
+    print("\n"*2)
 
     if intentos_usuario[fila_numero][columna_numero] != ' ':
         print("Ya habías disparado en esas coordenadas,inténtalo de nuevo novato!")
@@ -159,13 +160,16 @@ def turno_disparos_juego_usuario():
         disparos_usuario = disparos_usuario + 1
     else:
         intentos_usuario[fila_numero][columna_numero] = '.'
-        print("fuck, que pésimo eres")
+        print("fuck, Daniel Larusso era mucho mejor, que pésimo eres")
 
+    print("\n"*2)
     print("Estos son los disparos que llevas:")
     imprimir_tablero_consola(intentos_usuario)
 
 def turno_disparos_juego_pc():
+    global disparos_pc
     print('SKYNET disparó')
+    print("\n"*2)
     fila_numero, columna_numero = pregunta_posicion_barcos_pc()
 
     if intentos_pc[fila_numero][columna_numero] != ' ':
@@ -173,14 +177,14 @@ def turno_disparos_juego_pc():
 
     # Checamos que los disparos no se repitan
     if tablero_usuario[fila_numero][columna_numero] == 'X':
-        print('BOOM, la SKYNET acertó')
+        print('BOOM, SKYNET acertó')
         intentos_pc[fila_numero][columna_numero] = 'X'
         disparos_pc = disparos_pc + 1
     else:
         intentos_pc[fila_numero][columna_numero] = '.'
-        print('FIU, la SKYNET falló')
+        print('La fuerza está contigo, SKYNET falló')
         
-
+    print("\n"*2)
     print('Estos son los disparos de SKYNET:')
     imprimir_tablero_consola(intentos_pc)
 
@@ -192,7 +196,10 @@ def turno_disparos_juego_pc():
 # Runtime
 # Comenzamos a codificar el storytelling del juego
 #
-print('Bienvenido a BATTLESHIP 3.0, si estás listo para poner a prueba tus habilidades como gamer, atrevete a jugar.')
+
+
+
+print('Bienvenido a BATTLESHIP 3.0, si estás listo para poner a prueba tus habilidades como gamer y evitar la revelión de las máquinas, atrevete a jugar.')
 print("\n"*2)
 print('COMENCEMOS!')
 print("\n"*2)
@@ -202,7 +209,8 @@ print('2.De forma automática, tu contrincante "SKYNET" elegirá la posicion de 
 print("\n"*2)
 print('3.Comenzarás a capturar tus disparos para el hundiemiento de la flota de SKYNET')
 print("\n"*2)
-print('¡SUERTE NOVATO!')                                 
+print('¡SUERTE NOVATO!')   
+print("\n"*2)                              
         
 inicio = input('Quieres comenzar? Para iniciar, escribe yes (y) para aceptar el reto o una (n) si decides retirarte:').upper()
 
@@ -213,8 +221,8 @@ if inicio in ['Y']:
     for i in range(3):
         eleccion_pc()
     #Aqui sólo comprobamos que se estuviera creando el tablero de la pc de forma correcta, pero este se oculta
-    print('Este es el tablero de SKYNET:')
-    imprimir_tablero_consola(tablero_pc)
+    #print('Este es el tablero de SKYNET:')
+    #imprimir_tablero_consola(tablero_pc)
 
     # Como solo debemos de tener 3 barcos, se usa un loop for para pedir un barco solo 3 veces
     print('Es tu turno de ubicar tus naves.')
@@ -235,25 +243,29 @@ disparos_usuario = 0
 disparos_pc = 0
 contador_turnos = 0
 
-while disparos_pc < 3 or disparos_usuario < 3 or contador_turnos < 20:
+while disparos_pc < 3 and disparos_usuario < 3 and contador_turnos < 20:
     turno_disparos_juego_usuario() 
     print("\n"*10)   
-    sleep(5)
+    sleep(3.5)
+    if disparos_usuario == 3:
+        break
     turno_disparos_juego_pc()
     print("\n"*10) 
-    sleep(5)
+    sleep(3.5)
+    if disparos_pc == 3:
+        break
     contador_turnos = contador_turnos + 1
 
 
-if turno_disparos_juego_usuario == 3:
+if disparos_usuario == 3:
     print('GANASTE! el sr miyagi estaría orgulloso de ti')    
 
 else:
-    if turno_disparos_juego_pc == 3:
-        print('LOSER! nadie puede contra las máquinas')   
+    if disparos_pc == 3:
+        print('ESTAMOS PERDIDOS! Arnold Guashanwer y el T-1000 ya empezaron la destrucción del mundo')   
     
     if contador_turnos == 20:
-        print('No pudiste derrotar a SKYNET en pocos turnos, vete de aqui!')
+        print('No pudiste derrotar a SKYNET en pocos turnos, John Connor se volvería a morir solo de ver esto, vete de aqui!')
 
     
 # Al momento de completar 3==x, es decir hundir los 3 barcos, se cierra el ciclo
